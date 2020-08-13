@@ -1,7 +1,7 @@
 # Map Examples
 
 [![Angular Material](https://img.shields.io/badge/material-latest-green)](https://material.angular.io/)
-[![LeaftLet](https://img.shields.io/badge/leftlet-1.5.1-green)](https://leafletjs.com/)
+[![LeafLet](https://img.shields.io/badge/leaflet-1.5.1-green)](https://leafletjs.com/)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
 
