@@ -3,7 +3,14 @@
         <p id = "green">Map&nbsp;</p><p id = "white">Examples</p>
     </h1>
     <div id = "fluid-menu">
-        <mat-slider min = "1" max = "100" step = "1" value = "1"></mat-slider>
+        <mat-slider
+            thumbLabel
+            [displayWith] = "formatLabel"
+            [(ngModel)] = "opacity"
+            tickInterval = "100"
+            min = "1" max = "100"
+            step = "1" value = "1"
+        ></mat-slider> {{ opacity }}
     </div>
 </div>
 <div class = "map-container">

@@ -37,3 +37,7 @@ h1#logo {
     color: white;
     display: inline;
 }
+
+mat-slider {
+    width: 300px;
+}
