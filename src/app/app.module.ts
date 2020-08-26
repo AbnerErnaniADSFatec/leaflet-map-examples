@@ -9,6 +9,10 @@ import { FormsModule } from '@angular/forms';
 // Angular Material
 import { MatSliderModule } from '@angular/material/slider';
 import { MapComponent } from './map/map.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { MapComponent } from './map/map.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatSliderModule
+    MatSliderModule,
+    MatDividerModule,
+    MatListModule,
+    MatGridListModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
