@@ -1,16 +1,49 @@
 <div class = "side-menu">
     <h1 id = "logo">
-        <p id = "green">Map&nbsp;</p><p id = "white">Examples</p>
+        <mat-grid-list cols = "2" rowHeight = "50px">
+            <mat-grid-tile>
+                <p id = "green">Map&nbsp;</p>
+                <p id = "white">Examples</p>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <div id = "login-button">
+                    <p id = "login-button">Login</p>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
     </h1>
     <div id = "fluid-menu">
-        <mat-slider
-            thumbLabel
-            [displayWith] = "formatLabel"
-            [(ngModel)] = "opacity"
-            tickInterval = "100"
-            min = "1" max = "100"
-            step = "1" value = "1"
-        ></mat-slider> {{ opacity }}
+        <mat-tab-group mat-align-tabs = "center">
+            <mat-tab label = "Search">
+                <div class = "content">
+                    <h2>Controlls</h2>
+                    <mat-list>
+                        <mat-list-item>
+                            <p class = "list-item-side-menu">
+                                Opacity
+                            </p>
+                            <mat-slider
+                                thumbLabel
+                                [displayWith] = "formatLabel"
+                                [(ngModel)] = "opacity"
+                                tickInterval = "100"
+                                min = "1" max = "100"
+                                step = "1" value = "1"
+                            ></mat-slider>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>
+                            <p class = "list-item-side-menu">
+                                Search Layer
+                            </p>
+                        </mat-list-item>
+                    </mat-list>
+                </div>
+            </mat-tab>
+            <mat-tab label = "Second">
+                Content 2
+            </mat-tab>
+        </mat-tab-group>
     </div>
 </div>
 <div class = "map-container">

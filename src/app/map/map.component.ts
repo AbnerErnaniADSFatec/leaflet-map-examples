@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import * as L from 'leaflet';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  styleUrls: ['./map.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MapComponent implements OnInit {
 
@@ -51,7 +52,7 @@ export class MapComponent implements OnInit {
   private initMap(): void {
     this.map = L.map('map', {
       center: [-23.204792, -45.862681],
-      zoom: 2
+      zoom: 5
     });
     L.control.layers(this.basemaps, this.overlayMaps).addTo(this.map);
     this.basemaps.OSM.addTo(this.map);

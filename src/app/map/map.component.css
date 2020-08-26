@@ -16,16 +16,20 @@
     position: absolute;
     width: 20%;
     height: 100%;
-    background-color: rgba(0, 160, 253);
+    background-color: white;
 }
 
-#fluid-menu {
-    padding: 10px;
+.list-item-side-menu {
+    font-family: 'Courier New', Courier, monospace;
 }
 
 h1#logo {
     background-color: rgba(0, 44, 189);
     padding: 10px;
+}
+
+h2 {
+    font-family: 'Courier New', Courier, monospace;
 }
 
 #green {
@@ -38,6 +42,39 @@ h1#logo {
     display: inline;
 }
 
+div#login-button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+p#login-button {
+    font-size: 12pt;
+    color: white;
+}
+
 mat-slider {
     width: 300px;
+}
+
+.mat-tab-group {
+    margin-bottom: 48px;
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: white;
+}
+
+.mat-tab-label {
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    background-color: rgb(0, 81, 128);
+}
+
+.mat-tab-label.mat-tab-label-active {
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    background-color: green;
+}
+
+.content {
+    padding: 15px;
 }
