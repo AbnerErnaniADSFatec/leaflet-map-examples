@@ -21,6 +21,7 @@
 
 .list-item-side-menu {
     font-family: 'Courier New', Courier, monospace;
+    display: flex;
 }
 
 h1#logo {
@@ -45,10 +46,6 @@ h2 {
 div#login-button {
     display: flex;
     justify-content: flex-end;
-}
-
-p#login-button {
-    font-size: 12pt;
     color: white;
 }
 
@@ -77,4 +74,18 @@ mat-slider {
 
 .content {
     padding: 15px;
+}
+
+.form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.card {
+    max-width: 400px;
 }
