@@ -1,27 +1,32 @@
 <div class = "side-menu">
-    <h1 id = "logo">
+    <div id = "logo">
         <mat-grid-list cols = "2" rowHeight = "50px">
             <mat-grid-tile>
-                <p id = "green">Map&nbsp;</p>
-                <p id = "white">Examples</p>
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <div id = "login-button">
-                    <button mat-stroked-button id = "login-button">LOGIN</button>
+                <div id = "title">
+                    <h1 id = "title">
+                        <p id = "green">Map&nbsp;</p>
+                        <p id = "white">Examples</p>
+                    </h1>
                 </div>
             </mat-grid-tile>
+            <mat-grid-tile>
+                <button mat-stroked-button id = "login-button">LOGIN</button>
+            </mat-grid-tile>
         </mat-grid-list>
-    </h1>
+    </div>
     <div id = "fluid-menu">
         <mat-tab-group mat-align-tabs = "center">
             <mat-tab label = "Search">
                 <div class = "content">
-                    <form class = "form">
-                        <mat-form-field class = "full-width">
-                            <mat-label>Search</mat-label>
-                            <input matInput placeholder = "Ex. São Paulo">
-                        </mat-form-field>
-                    </form>
+                    <div id = "form">
+                        <form class = "search-form">
+                            <mat-form-field class = "full-width">
+                                <mat-label>Search</mat-label>
+                                <input matInput placeholder = "Ex. São Paulo">
+                            </mat-form-field>
+                            <button mat-stroked-button id = "search">Search</button>
+                        </form>
+                    </div>
                     <h2>Controlls</h2>
                     <mat-list>
                         <mat-list-item>
@@ -49,21 +54,44 @@
                                 Select Layer
                             </p>
                         </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>
+                            <div id = "latlng">
+                                <p class = "list-item-side-menu">
+                                    Lat: 0.00 Long: 0.00
+                                </p>
+                            </div>
+                        </mat-list-item>
                     </mat-list>
+                    <div id = "info" >&nbsp;</div>
                 </div>
             </mat-tab>
             <mat-tab label = "Results">
                 <div class = "content">
-                    <mat-card class = "card">
-                        <mat-card-header>
-                            <img mat-card-avatar src = "https://raw.githubusercontent.com/ProjetoIntegradorADSFatec/web-gis/master/src/assets/images/example.jpg">
-                            <mat-card-title>&nbsp;MOD13Q1</mat-card-title>
-                            <mat-card-subtitle>&nbsp;23 - 03 - 1999</mat-card-subtitle>
-                        </mat-card-header>
-                        <mat-card-content>
-                            <p>ID: 1234</p>
-                        </mat-card-content>
-                    </mat-card>
+                    <div id = "card">
+                        <mat-card class = "card">
+                            <mat-card-header>
+                                <img mat-card-avatar src = "https://raw.githubusercontent.com/ProjetoIntegradorADSFatec/web-gis/master/src/assets/images/example.jpg">
+                                <mat-card-title>&nbsp;MOD13Q1</mat-card-title>
+                                <mat-card-subtitle>&nbsp;23 - 03 - 1999</mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <p>ID: 1234</p>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    <div id = "card">
+                        <mat-card class = "card">
+                            <mat-card-header>
+                                <img mat-card-avatar src = "https://raw.githubusercontent.com/ProjetoIntegradorADSFatec/web-gis/master/src/assets/images/example.jpg">
+                                <mat-card-title>&nbsp;MOD13Q1</mat-card-title>
+                                <mat-card-subtitle>&nbsp;23 - 03 - 1999</mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <p>ID: 1234</p>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
                 </div>
             </mat-tab>
         </mat-tab-group>

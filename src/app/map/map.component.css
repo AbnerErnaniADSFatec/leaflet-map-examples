@@ -24,9 +24,9 @@
     display: flex;
 }
 
-h1#logo {
+div#logo {
     background-color: rgba(0, 44, 189);
-    padding: 10px;
+    padding-bottom: 10px;
 }
 
 h2 {
@@ -43,13 +43,21 @@ h2 {
     display: inline;
 }
 
-div#login-button {
+div#title {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+}
+
+.mat-stroked-button#login-button {
     color: white;
 }
 
-mat-slider {
+.mat-stroked-button#search {
+    color: white;
+    background-color: green;
+}
+
+.mat-slider {
     width: 300px;
 }
 
@@ -64,6 +72,7 @@ mat-slider {
     font-family: 'Courier New', Courier, monospace;
     color: white;
     background-color: rgb(0, 81, 128);
+    width: 100%;
 }
 
 .mat-tab-label.mat-tab-label-active {
@@ -72,20 +81,32 @@ mat-slider {
     background-color: green;
 }
 
+.mat-grid-tile {
+    padding: 10px;
+}
+
 .content {
     padding: 15px;
 }
 
-.form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
+div#form {
+    display: flex;
+    align-items: center;
 }
 
 .full-width {
-    width: 100%;
+    display: inline;
+    padding-right: 15px;
 }
 
-.card {
+.mat-card.card {
     max-width: 400px;
+}
+
+div#card {
+    padding: 10px;
+}
+
+div#latlng {
+    font-family: 'Courier New', Courier, monospace;
 }

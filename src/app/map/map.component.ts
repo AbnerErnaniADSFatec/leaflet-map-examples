@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
 import * as L from 'leaflet';
 
 @Component({
@@ -13,6 +12,7 @@ export class MapComponent implements OnInit {
   private map;
   private basemaps;
   private overlayMaps;
+  private latlng;
   opacity = 50;
 
   constructor() { }
@@ -54,6 +54,12 @@ export class MapComponent implements OnInit {
     this.map = L.map('map', {
       center: [-23.204792, -45.862681],
       zoom: 5
+    });
+    this.map.on('click', function(event){
+      document.getElementById('latlng').innerHTML = (
+        '<p class = "list-item-side-menu">Lat: ' + parseFloat(event.latlng.lat).toFixed(2) + '&nbsp;' +
+        'Long: ' + parseFloat(event.latlng.lng).toFixed(2) + '</p>'
+      );
     });
     L.control.layers(this.basemaps, this.overlayMaps).addTo(this.map);
     this.basemaps.OSM.addTo(this.map);
