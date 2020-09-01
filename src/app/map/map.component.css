@@ -6,17 +6,28 @@
     bottom: 0;
 }
 
-#map {
-    width: 100%;
-    height: 100%;
-}
-
 .side-menu {
     z-index: 1;
     position: absolute;
     width: 20%;
     height: 100%;
     background-color: white;
+    font-size: 10pt;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.content {
+    padding: 15px;
+}
+
+.list-menu {
+    padding-top: 15px;
+    padding-bottom: 4px;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
 }
 
 div#logo {
@@ -24,8 +35,9 @@ div#logo {
     padding-bottom: 10px;
 }
 
-h2 {
-    font-family: 'Courier New', Courier, monospace;
+div#title {
+    display: flex;
+    align-items: center;
 }
 
 #green {
@@ -38,24 +50,28 @@ h2 {
     display: inline;
 }
 
-div#title {
-    display: flex;
-    align-items: center;
-}
-
 .mat-stroked-button#login-button {
     color: white;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .mat-stroked-button#search {
+    display: flex;
+    align-content: flex-end;
     color: white;
     background-color: green;
+}
+
+.mat-stroked-button#getCoordMap {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
 }
 
 .mat-tab-group {
     margin-bottom: 48px;
     color: black;
-    font-family: 'Courier New', Courier, monospace;
     background-color: white;
 }
 
@@ -71,7 +87,6 @@ div#title {
 }
 
 .mat-tab-label.mat-tab-label-active {
-    font-family: 'Courier New', Courier, monospace;
     color: white;
     background-color: green;
 }
@@ -81,39 +96,42 @@ div#title {
 }
 
 .mat-grid-tile#cloud-coverage {
-    padding: 10px;
-}
-
-.mat-slider.slider-cloud-coverage {
-    width: 60%;
-}
-
-.content {
-    padding: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .full-width-search {
-    padding-top: 15px;
     width: 100%;
 }
 
 .full-width-coord {
     padding-right: 10px;
-
+    width: 300px;
 }
 
 .mat-card.card {
     max-width: 400px;
 }
 
-div#card {
-    padding: 10px;
+div#search-button {
+    display: flex;
+    justify-content: flex-end;
 }
 
-div#latlng {
-    font-family: 'Courier New', Courier, monospace;
+div#bbox-input {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mat-card {
+    margin: 10px;
+}
+
+.full-width-cloud-coverage {
+    width: 60px;
 }
 
 .mat-tree {
-    padding: 1px;
+    font-size: 10pt;
+    font-family: 'Courier New', Courier, monospace;
 }

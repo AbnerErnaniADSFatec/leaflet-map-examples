@@ -4,6 +4,7 @@ import * as L from 'leaflet';
 // Angular Material
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+import { FormControl } from '@angular/forms';
 
 interface Node {
   name: string;
@@ -45,10 +46,15 @@ const collections: Node[] = [
 })
 export class MapComponent implements OnInit {
 
-  private map;
-  private basemaps;
-  private overlayMaps;
-  opacity = 50;
+  private map: any;
+  private basemaps: any;
+  private overlayMaps: any;
+
+  selected = new FormControl(0);
+  cloud_coverage: number = 50;
+  place: string = "";
+  bbox: string = "";
+  latlng: any = {};
 
   private _transformer = (node: Node, level: number) => {
     return {
@@ -87,10 +93,6 @@ export class MapComponent implements OnInit {
     this.initMap();
   }
 
-  formatLabel(value: number) {
-    return value + '%';
-  }
-
   private initLayers(): void {
     this.basemaps = {
       OSM: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -110,7 +112,7 @@ export class MapComponent implements OnInit {
         layers: 'terrama2_10:view10',
         format: 'image/png',
         transparent: true,
-        opacity: this.opacity / 100
+        opacity: 0.5
       })
     };
   }
@@ -120,11 +122,12 @@ export class MapComponent implements OnInit {
       center: [-23.204792, -45.862681],
       zoom: 5
     });
+    var getBBOX = (latlng) => {
+      this.latlng = latlng;
+      this.bbox = (parseFloat(latlng.lat).toFixed(2) + ", " + parseFloat(latlng.lng).toFixed(2));
+    };
     this.map.on('click', function(event){
-      document.getElementById('latlng').innerHTML = (
-        '<p class = "list-item-side-menu">Lat: ' + parseFloat(event.latlng.lat).toFixed(2) + '&nbsp;' +
-        'Long: ' + parseFloat(event.latlng.lng).toFixed(2) + '</p>'
-      );
+      getBBOX(event.latlng);
     });
     console.log(this.getFeatureInfoUrl(
       'http://www.terrama2.dpi.inpe.br/chuva/geoserver/terrama2_10/wms?',
@@ -157,5 +160,10 @@ export class MapComponent implements OnInit {
     params[params.version === '1.3.0' ? 'i' : 'x'] = point.x;
     params[params.version === '1.3.0' ? 'j' : 'y'] = point.y;
     return url + L.Util.getParamString(params, url, true);
+  }
+
+  search(): void {
+    this.selected.setValue(1);
+    console.log(this.dataSourceCollections, this.dataSourceCubes, this.place, this.bbox);
   }
 }

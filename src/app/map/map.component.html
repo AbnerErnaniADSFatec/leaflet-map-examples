@@ -15,7 +15,10 @@
         </mat-grid-list>
     </div>
     <div id = "fluid-menu">
-        <mat-tab-group mat-align-tabs = "center">
+        <mat-tab-group
+            [selectedIndex] = "selected.value"
+            (selectedIndexChange) = "selected.setValue($event)"
+            mat-align-tabs = "center">
             <mat-tab>
                 <ng-template mat-tab-label>
                     <mat-icon class = "tab-icon">search</mat-icon>
@@ -23,80 +26,77 @@
                 </ng-template>
                 <div class = "content">
                     <div id = "collection-cubes">
-                        <mat-tree [dataSource] = "dataSourceCubes" [treeControl] = "treeControl">
-                            <mat-tree-node *matTreeNodeDef = "let node; when: !hasChild && hasCheck" matTreeNodePadding>
-                                <button mat-icon-button disabled></button>
-                                <mat-checkbox [(ngModel)] = "node.checked">{{ node.name }}</mat-checkbox>
-                            </mat-tree-node>
-                            <mat-tree-node *matTreeNodeDef = "let node; when: hasChild" matTreeNodePadding>
-                                <button mat-icon-button matTreeNodeToggle [attr.aria-label] = "'toggle ' + node.name">
-                                    <mat-icon class = "mat-icon-rtl-mirror">
-                                        {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
-                                    </mat-icon>
-                                </button>
-                                {{ node.name }}
-                            </mat-tree-node>
-                        </mat-tree>
-                        <mat-tree [dataSource] = "dataSourceCollections" [treeControl] = "treeControl">
-                            <mat-tree-node *matTreeNodeDef = "let node; when: !hasChild && hasCheck" matTreeNodePadding>
-                                <button mat-icon-button disabled></button>
-                                <mat-checkbox [(ngModel)] = "node.checked">{{ node.name }}</mat-checkbox>
-                            </mat-tree-node>
-                            <mat-tree-node *matTreeNodeDef = "let node; when: hasChild" matTreeNodePadding>
-                                <button mat-icon-button matTreeNodeToggle [attr.aria-label] = "'toggle ' + node.name">
-                                    <mat-icon class = "mat-icon-rtl-mirror">
-                                        {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
-                                    </mat-icon>
-                                </button>
-                                {{ node.name }}
-                            </mat-tree-node>
-                        </mat-tree>
+                        <mat-card>
+                            <mat-tree [dataSource] = "dataSourceCubes" [treeControl] = "treeControl">
+                                <mat-tree-node *matTreeNodeDef = "let node; when: !hasChild && hasCheck" matTreeNodePadding>
+                                    <button mat-icon-button disabled></button>
+                                    <mat-checkbox [(ngModel)] = "node.checked">{{ node.name }}</mat-checkbox>
+                                </mat-tree-node>
+                                <mat-tree-node *matTreeNodeDef = "let node; when: hasChild" matTreeNodePadding>
+                                    <button mat-icon-button matTreeNodeToggle [attr.aria-label] = "'toggle ' + node.name">
+                                        <mat-icon class = "mat-icon-rtl-mirror">
+                                            {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+                                        </mat-icon>
+                                    </button>
+                                    {{ node.name }}
+                                </mat-tree-node>
+                            </mat-tree>
+                        </mat-card>
+                        <mat-card>
+                            <mat-tree [dataSource] = "dataSourceCollections" [treeControl] = "treeControl">
+                                <mat-tree-node *matTreeNodeDef = "let node; when: !hasChild && hasCheck" matTreeNodePadding>
+                                    <button mat-icon-button disabled></button>
+                                    <mat-checkbox [(ngModel)] = "node.checked">{{ node.name }}</mat-checkbox>
+                                </mat-tree-node>
+                                <mat-tree-node *matTreeNodeDef = "let node; when: hasChild" matTreeNodePadding>
+                                    <button mat-icon-button matTreeNodeToggle [attr.aria-label] = "'toggle ' + node.name">
+                                        <mat-icon class = "mat-icon-rtl-mirror">
+                                            {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+                                        </mat-icon>
+                                    </button>
+                                    {{ node.name }}
+                                </mat-tree-node>
+                            </mat-tree>
+                        </mat-card>
                     </div>
                     <mat-divider></mat-divider>
-                    <div id = "form">
-                        <form class = "search-form">
-                            <mat-form-field class = "full-width-search">
-                                <mat-label>Search Places</mat-label>
-                                <input matInput placeholder = "Ex. São Paulo">
-                            </mat-form-field>
+                    <div id = "search-form" class = "list-menu">
+                        <mat-form-field class = "full-width-search">
+                            <mat-label>Search Places</mat-label>
+                            <input matInput type = "text" [(ngModel)] = "place" placeholder = "Ex. São Paulo">
+                        </mat-form-field>
+                        <div id = "bbox-input">
                             <mat-form-field class = "full-width-coord">
                                 <mat-label>North, South, East, West</mat-label>
-                                <input matInput placeholder = "Ex. 0.00, 0.00, 0.00, 0.00">
+                                <input matInput type = "text" [(ngModel)] = "bbox" placeholder = "Ex. 0.00, 0.00, 0.00, 0.00">
                             </mat-form-field>
                             <button mat-stroked-button id = "getCoordMap">
                                 <mat-icon class = "tab-icon">highlight_alt</mat-icon>
                             </button>
-                        </form>
+                        </div>
                     </div>
                     <mat-divider></mat-divider>
-                    <mat-grid-list id = "cloud-coverage" cols = "3" rowHeight = "60px">
-                        <mat-grid-tile id = "cloud-coverage">Cloud Coverage %</mat-grid-tile>
-                        <mat-grid-tile id = "cloud-coverage">
-                            <mat-slider
-                                thumbLabel
-                                [displayWith] = "formatLabel"
-                                [(ngModel)] = "opacity"
-                                min = "1" max = "100"
-                                step = "1" value = "1"
-                                class = "slider-cloud-coverage"
-                            ></mat-slider>
-                        </mat-grid-tile>
-                        <mat-grid-tile id = "cloud-coverage">
-                            <mat-form-field appearance = "fill">
-                                <input matInput type = "number" placeholder = "10 %" min = "1" max = "100">
-                                <span matSuffix>px</span>
-                            </mat-form-field>
-                        </mat-grid-tile>
-                    </mat-grid-list>
-                    <mat-divider></mat-divider>
-                    <div id = "search-button">
-                        <button mat-stroked-button id = "search">Search</button>
+                    <div id = "cloud-coverage" class = "list-menu">
+                        <mat-grid-list cols = "3" rowHeight = "60px">
+                            <mat-grid-tile>Cloud Coverage</mat-grid-tile>
+                            <mat-grid-tile id = "cloud-coverage">
+                                <mat-slider
+                                    [(ngModel)] = "cloud_coverage"
+                                    min = "1" max = "100"
+                                    step = "1" value = "1"
+                                ></mat-slider>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field class = "full-width-cloud-coverage">
+                                    <mat-label>Cloud %</mat-label>
+                                    <input matInput type = "number" [(ngModel)] = "cloud_coverage" min = 0 max = 100 placeholder = "10 %">
+                                </mat-form-field>
+                            </mat-grid-tile>
+                        </mat-grid-list>
                     </div>
                     <mat-divider></mat-divider>
-                    <div id = "latlng">
-                        <p class = "list-item-side-menu">
-                            Lat: 0.00 Long: 0.00
-                        </p>
+                    <div id = "search-button" class = "list-menu">
+                        <button mat-stroked-button (click) = "search()" id = "search">Search</button>
                     </div>
                 </div>
             </mat-tab>
@@ -107,7 +107,7 @@
                 </ng-template>
                 <div class = "content">
                     <div id = "card">
-                        <mat-card class = "card">
+                        <mat-card>
                             <mat-card-header>
                                 <img mat-card-avatar src = "https://raw.githubusercontent.com/ProjetoIntegradorADSFatec/web-gis/master/src/assets/images/example.jpg">
                                 <mat-card-title>&nbsp;MOD13Q1</mat-card-title>
@@ -119,7 +119,7 @@
                         </mat-card>
                     </div>
                     <div id = "card">
-                        <mat-card class = "card">
+                        <mat-card>
                             <mat-card-header>
                                 <img mat-card-avatar src = "https://raw.githubusercontent.com/ProjetoIntegradorADSFatec/web-gis/master/src/assets/images/example.jpg">
                                 <mat-card-title>&nbsp;MOD13Q1</mat-card-title>
